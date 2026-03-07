@@ -1,4 +1,4 @@
-# 4.0 Data and Database Security — 23%
+# 4.0 Data and Database Security - 23%
 
 Second-highest weight. This domain covers encryption, governance, access control, physical/logical security, and attack types. Expect scenario questions on authentication policies and conceptual questions on everything else.
 
@@ -24,31 +24,31 @@ Data moving across a network between client and server or between servers.
 
 #### Data at Rest
 
-Data stored on disk — database files, backups, logs.
+Data stored on disk - database files, backups, logs.
 
-- **Transparent Data Encryption (TDE)** — encrypts database files at the storage level; queries see plaintext because decryption happens in memory.
-- **Column-level encryption** — encrypts specific sensitive columns; more granular but higher application complexity.
-- **Full-disk encryption** — OS-level encryption of the entire volume (BitLocker, LUKS).
+- **Transparent Data Encryption (TDE)** - encrypts database files at the storage level; queries see plaintext because decryption happens in memory.
+- **Column-level encryption** - encrypts specific sensitive columns; more granular but higher application complexity.
+- **Full-disk encryption** - OS-level encryption of the entire volume (BitLocker, LUKS).
 
 ### Data Masking
 
 - Replaces sensitive data with realistic but fictitious values (e.g., SSN `123-45-6789` → `XXX-XX-6789`).
-- **Static masking** — permanently alters data in non-production copies.
-- **Dynamic masking** — masks data at query time based on user role; production data remains unchanged.
+- **Static masking** - permanently alters data in non-production copies.
+- **Dynamic masking** - masks data at query time based on user role; production data remains unchanged.
 
 #### Data Discovery
 
 - The process of scanning databases to identify where sensitive data resides (PII, PHI, cardholder data).
-- Must happen before masking or classification — you can't protect what you don't know about.
+- Must happen before masking or classification - you can't protect what you don't know about.
 
 ### Data Destruction Techniques
 
 When data must be permanently removed (end-of-life, compliance requirement):
 
-- **Logical deletion** — mark records as deleted (soft delete); data is recoverable.
-- **Physical deletion** — `DELETE` or `TRUNCATE`; data may still be recoverable from backups or disk forensics.
-- **Cryptographic erasure** — destroy the encryption key, rendering encrypted data permanently unreadable.
-- **Media sanitization** — degaussing, overwriting, or physical destruction of storage media.
+- **Logical deletion** - mark records as deleted (soft delete); data is recoverable.
+- **Physical deletion** - `DELETE` or `TRUNCATE`; data may still be recoverable from backups or disk forensics.
+- **Cryptographic erasure** - destroy the encryption key, rendering encrypted data permanently unreadable.
+- **Media sanitization** - degaussing, overwriting, or physical destruction of storage media.
 
 ### Data Security Audit
 
@@ -64,7 +64,7 @@ When data must be permanently removed (end-of-life, compliance requirement):
 | **SQL code** | SQL injection vulnerabilities, dynamic SQL without parameterization, excessive permissions |
 | **Credential storage checks** | Passwords stored in plaintext, hardcoded connection strings, secrets in source control |
 
-**What they might ask:** "During a security audit, the DBA finds a service account with a password that hasn't been changed in two years — what should they do?" → Rotate the password immediately and enforce a password rotation policy.
+**What they might ask:** "During a security audit, the DBA finds a service account with a password that hasn't been changed in two years - what should they do?" → Rotate the password immediately and enforce a password rotation policy.
 
 ---
 
@@ -96,22 +96,22 @@ Classify data by sensitivity to apply appropriate controls:
 | Regulation | Scope | Key Requirements |
 |------------|-------|-----------------|
 | **GDPR** (General Data Protection Regulation) | EU/EEA residents' data, regardless of where the organization is based | Right to erasure, data portability, breach notification within 72 hours, lawful basis for processing, Data Protection Officer (DPO) |
-| **Regional regulations** | State, provincial, or sector-specific laws (e.g., CCPA, PIPEDA, HIPAA) | Vary by jurisdiction; the exam uses "regional regulations" as a catch-all — know that compliance requirements differ by geography |
+| **Regional regulations** | State, provincial, or sector-specific laws (e.g., CCPA, PIPEDA, HIPAA) | Vary by jurisdiction; the exam uses "regional regulations" as a catch-all - know that compliance requirements differ by geography |
 
-**Exam tip:** If a question mentions a user requesting deletion of their personal data, think **GDPR — right to erasure**. If it mentions cardholder data, think **PCI DSS**.
+**Exam tip:** If a question mentions a user requesting deletion of their personal data, think **GDPR - right to erasure**. If it mentions cardholder data, think **PCI DSS**.
 
 ---
 
 ## 4.3 Given a Scenario, Implement Authentication and Authorization Policies
 
-This is scenario-based — expect "Given this situation, what should the DBA configure?"
+This is scenario-based - expect "Given this situation, what should the DBA configure?"
 
 ### Access Controls
 
 | Concept | Definition | Implementation |
 |---------|------------|----------------|
 | **Rights and privileges** | Permissions granted to users or roles (`SELECT`, `INSERT`, `EXECUTE`, `ALTER`, etc.) | Grant at the most granular level practical; use roles to simplify management |
-| **Least privilege** | Every user/account gets only the permissions required to perform their job — nothing more | Default deny; explicitly grant needed permissions; review periodically |
+| **Least privilege** | Every user/account gets only the permissions required to perform their job - nothing more | Default deny; explicitly grant needed permissions; review periodically |
 
 **Decision steps for scenario questions:**
 
@@ -141,7 +141,7 @@ This is scenario-based — expect "Given this situation, what should the DBA con
 - Integration with directory services (Active Directory, LDAP) or cloud IAM (AWS IAM, Azure AD).
 - Enables single sign-on (SSO), multi-factor authentication (MFA), and centralized audit trails.
 
-**What they might ask:** "A new analyst needs to run reports but should not be able to modify data — what should the DBA do?" → Create or assign a read-only role with `SELECT` permissions on the relevant schemas; apply least privilege.
+**What they might ask:** "A new analyst needs to run reports but should not be able to modify data - what should the DBA do?" → Create or assign a read-only role with `SELECT` permissions on the relevant schemas; apply least privilege.
 
 ---
 
@@ -154,7 +154,7 @@ Physical access to database servers must be controlled. If an attacker has physi
 | Control | Purpose |
 |---------|---------|
 | **Access control** | Locked server rooms, badge readers, mantraps |
-| **Biometrics** | Fingerprint, retinal scan — high-assurance identity verification for data-center entry |
+| **Biometrics** | Fingerprint, retinal scan - high-assurance identity verification for data-center entry |
 | **Surveillance** | CCTV cameras monitoring server rooms and entry points; recorded for forensic review |
 | **Fire suppression** | Clean-agent suppression (FM-200, Novec) that won't damage electronics; smoke detection and alarms |
 | **Cooling system** | HVAC and precision cooling to maintain safe operating temperatures; overheating causes hardware failure and outages |
@@ -173,7 +173,7 @@ Physical access to database servers must be controlled. If an attacker has physi
 
 ## 4.5 Describe Types of Attacks and Their Effects on Data Systems
 
-This is a "Describe" objective — know the attack type, how it works, and its effect. Expect "which attack does this describe?" questions.
+This is a "Describe" objective - know the attack type, how it works, and its effect. Expect "which attack does this describe?" questions.
 
 | Attack | How It Works | Effect on Data Systems | Mitigation |
 |--------|-------------|----------------------|------------|
@@ -182,8 +182,8 @@ This is a "Describe" objective — know the attack type, how it works, and its e
 | **On-path attacks** (man-in-the-middle) | Attacker intercepts communication between client and database server | Credential theft, data interception, session hijacking | TLS/SSL encryption for all DB connections; certificate pinning; mutual authentication |
 | **Brute-force attacks** | Automated repeated login attempts with different passwords until one succeeds | Unauthorized access if successful; account lockouts if policies are in place | Account lockout policies, strong password requirements, MFA, monitoring failed logins |
 | **Phishing** | Social engineering via fake emails/websites to trick users into revealing credentials | Compromised DBA or user accounts → unauthorized database access | Security awareness training, MFA, email filtering, verifying sender identity |
-| **Malware — Ransomware** | Encrypts database files and demands payment for the decryption key | Complete data loss or extended downtime if backups are unavailable or also encrypted | Offline/immutable backups, endpoint protection, network segmentation, principle of least privilege for file-system access |
+| **Malware - Ransomware** | Encrypts database files and demands payment for the decryption key | Complete data loss or extended downtime if backups are unavailable or also encrypted | Offline/immutable backups, endpoint protection, network segmentation, principle of least privilege for file-system access |
 
-**What they might ask:** "An attacker sends a crafted string `' OR 1=1 --` into a login form — what type of attack is this?" → **SQL injection.** "What is the best prevention?" → **Parameterized queries.**
+**What they might ask:** "An attacker sends a crafted string `' OR 1=1 --` into a login form - what type of attack is this?" → **SQL injection.** "What is the best prevention?" → **Parameterized queries.**
 
 **Exam tip:** Know that SQL injection targets the **database** through the **application**. The fix is in the application code (parameterized queries), but the DBA can also limit damage by enforcing least-privilege accounts for the application's DB connection.

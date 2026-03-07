@@ -1,4 +1,4 @@
-# 2.0 Database Deployment — 16%
+# 2.0 Database Deployment - 16%
 
 ---
 
@@ -11,9 +11,9 @@ Planning and design spans both Domains 1 and 2. This section focuses on how plan
 | Requirement | Key Questions | Deployment Impact |
 |-------------|---------------|-------------------|
 | **Number of users** | How many concurrent connections at peak? | Determines connection pooling, licensing tier, and whether clustering is needed |
-| **Storage capacity — Size** | How much data at launch? Growth rate? | Drives initial disk allocation, auto-growth settings, and storage tier (SSD vs. HDD) |
-| **Storage capacity — Speed** | What IOPS and latency are acceptable? | Influences choice of DAS, NAS, or SAN; SSD vs. spinning disk |
-| **Storage capacity — Type** | Block, file, or object storage? | Affects backup strategy and cloud service selection |
+| **Storage capacity - Size** | How much data at launch? Growth rate? | Drives initial disk allocation, auto-growth settings, and storage tier (SSD vs. HDD) |
+| **Storage capacity - Speed** | What IOPS and latency are acceptable? | Influences choice of DAS, NAS, or SAN; SSD vs. spinning disk |
+| **Storage capacity - Type** | Block, file, or object storage? | Affects backup strategy and cloud service selection |
 | **Database objectives / Use cases** | OLTP? OLAP? Mixed? Reporting replica? | Shapes schema normalization level, indexing strategy, and read-replica topology |
 
 ### Architecture Decisions
@@ -21,15 +21,15 @@ Planning and design spans both Domains 1 and 2. This section focuses on how plan
 | Decision | Options | Trade-offs |
 |----------|---------|------------|
 | **Cloud vs. on-premises** | Cloud: elastic, managed, OpEx. On-prem: full control, CapEx, data-sovereignty compliance | Cloud reduces operational burden but may introduce latency or regulatory concerns |
-| **Cloud hosting model** | **IaaS** — full OS control, you manage DBMS. **PaaS** — provider manages OS/patching, you manage schema and data. **SaaS** — no admin access, embedded DB | Higher abstraction = less control but less operational overhead |
+| **Cloud hosting model** | **IaaS** - full OS control, you manage DBMS. **PaaS** - provider manages OS/patching, you manage schema and data. **SaaS** - no admin access, embedded DB | Higher abstraction = less control but less operational overhead |
 | **Gap analysis** | Inventory current assets → identify gaps in hardware, licensing, skills | Drives procurement and training before deployment |
 
 ### Schema Levels
 
 | Level | What It Represents | Created When |
 |-------|--------------------|--------------|
-| **Logical schema** | Entities, attributes, relationships, constraints — platform-independent | During design (ERD phase) |
-| **Physical schema** | Tables, indexes, partitions, tablespaces, storage engine — platform-specific | During implementation, derived from logical schema |
+| **Logical schema** | Entities, attributes, relationships, constraints - platform-independent | During design (ERD phase) |
+| **Physical schema** | Tables, indexes, partitions, tablespaces, storage engine - platform-specific | During implementation, derived from logical schema |
 | **View schema** | Virtual tables exposing curated subsets of data | After physical schema is in place; used for access control and simplification |
 
 ### Design Documentation
@@ -41,7 +41,7 @@ Planning and design spans both Domains 1 and 2. This section focuses on how plan
 | **Data cardinality** | Specifies relationship ratios between entities | Ensures correct foreign-key design and JOIN expectations |
 | **System requirements documentation** | CPU, RAM, OS, network, licensing prerequisites | Procurement checklist before installation |
 
-**Exam tip:** If a question asks "what should the DBA review before deploying a new database?", the answer set will include ERDs, data dictionaries, and system requirements — not monitoring dashboards (that's Domain 3).
+**Exam tip:** If a question asks "what should the DBA review before deploying a new database?", the answer set will include ERDs, data dictionaries, and system requirements - not monitoring dashboards (that's Domain 3).
 
 ---
 
@@ -60,7 +60,7 @@ Before deployment begins, confirm all required assets are in hand:
 
 | Phase | What Happens | Key Considerations |
 |-------|--------------|-------------------|
-| **Installation and configuration** | Install DBMS binaries; set instance parameters (memory, tempdb, ports) | Verify **database prerequisites** — OS version, patches, runtime libraries |
+| **Installation and configuration** | Install DBMS binaries; set instance parameters (memory, tempdb, ports) | Verify **database prerequisites** - OS version, patches, runtime libraries |
 | **Provisioning** | Allocate storage, create databases, set up schemas and users | Automate where possible (scripts, IaC) for repeatability |
 | **Upgrading** | Move from an older DBMS version to a newer one | Compatibility checks, deprecated-feature audit, rollback plan |
 | **Modifying** | Alter existing configuration (add filegroups, change collation, resize) | Change management approval; test in non-production first |
@@ -91,7 +91,7 @@ Before deployment begins, confirm all required assets are in hand:
 | **Regression testing** | Existing functionality still works after changes |
 | **Negative testing** | Invalid inputs, constraint violations, and edge cases are rejected gracefully |
 
-**Exam tip:** Negative testing is often a distractor if you're unfamiliar with it. It deliberately sends bad data to confirm the system handles errors properly — it's not about testing for performance problems.
+**Exam tip:** Negative testing is often a distractor if you're unfamiliar with it. It deliberately sends bad data to confirm the system handles errors properly - it's not about testing for performance problems.
 
 ### Validation
 
@@ -102,6 +102,6 @@ Before deployment begins, confirm all required assets are in hand:
 | **Data values** | Spot-check actual data against expected values; look for NULLs, truncation, encoding issues |
 | **Queries** | Key queries return correct results within acceptable time |
 | **Referential integrity / integrity validation** | Foreign keys enforced; orphan records do not exist |
-| **Scalability validation** | System handles projected growth — increase data volume and user count to verify |
+| **Scalability validation** | System handles projected growth - increase data volume and user count to verify |
 
-**What they might ask:** "After importing data from a CSV, the DBA notices some columns contain unexpected NULLs — which validation step was missed?" → **Data values** validation (and possibly data mapping).
+**What they might ask:** "After importing data from a CSV, the DBA notices some columns contain unexpected NULLs - which validation step was missed?" → **Data values** validation (and possibly data mapping).

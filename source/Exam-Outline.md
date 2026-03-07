@@ -1,4 +1,4 @@
-CompTIA DataSys+ (DS0-001) — Vendor-neutral database administration certification validating skills to deploy, manage, secure, and maintain database systems in enterprise environments.
+CompTIA DataSys+ (DS0-001) - Vendor-neutral database administration certification validating skills to deploy, manage, secure, and maintain database systems in enterprise environments.
 
 **Target profile**
 

@@ -1,4 +1,4 @@
-# 1.0 Database Fundamentals — 24%
+# 1.0 Database Fundamentals - 24%
 
 ---
 
@@ -8,11 +8,11 @@
 
 | Aspect | Relational (SQL) | Nonrelational (NoSQL) |
 |--------|------------------|-----------------------|
-| **Data model** | Tables with rows and columns; fixed schema | Flexible schemas — documents, key-value pairs, graphs, wide columns |
+| **Data model** | Tables with rows and columns; fixed schema | Flexible schemas - documents, key-value pairs, graphs, wide columns |
 | **Schema** | Schema-on-write (defined before data entry) | Schema-on-read (structure interpreted at query time) |
 | **Relationships** | Enforced via foreign keys, JOINs | Typically denormalized; relationships handled in application code or specialized engines (graph DBs) |
-| **Scaling** | Vertical (scale up — bigger server) | Horizontal (scale out — add nodes) |
-| **ACID** | Full ACID by default | Varies — many favor eventual consistency (BASE model) |
+| **Scaling** | Vertical (scale up - bigger server) | Horizontal (scale out - add nodes) |
+| **ACID** | Full ACID by default | Varies - many favor eventual consistency (BASE model) |
 | **Query language** | SQL (standardized) | Vendor-specific APIs or query languages |
 | **Best for** | Structured, transactional workloads; strict integrity | High-velocity, high-volume, or semi-/unstructured data; rapid iteration |
 
@@ -22,7 +22,7 @@
 
 | Format | Description | Example |
 |--------|-------------|---------|
-| **Linear** | Data stored/accessed sequentially — row after row, record after record | Flat files, CSV, traditional row-store RDBMS |
+| **Linear** | Data stored/accessed sequentially - row after row, record after record | Flat files, CSV, traditional row-store RDBMS |
 | **Non-linear** | Data stored in interconnected or hierarchical structures; traversal is not sequential | Graph databases, document stores, tree structures |
 
 ### NoSQL Types
@@ -30,7 +30,7 @@
 | Type | How It Stores Data | Strengths | Common Tool |
 |------|--------------------|-----------|-------------|
 | **Document** | JSON/BSON documents; each document can have a different structure | Flexible schema, natural for web/mobile apps | **MongoDB**, **Cosmos** (document API) |
-| **Key-value** | Simple pairs — a unique key maps to a blob/value | Extremely fast lookups, caching, session stores | **Amazon DynamoDB**, Redis |
+| **Key-value** | Simple pairs - a unique key maps to a blob/value | Extremely fast lookups, caching, session stores | **Amazon DynamoDB**, Redis |
 | **Column-oriented** | Data organized by columns (column families) instead of rows | High write throughput, time-series, analytics at scale | **Cassandra**, HBase |
 | **Graph** | Nodes + edges + properties; optimized for relationship traversal | Social networks, fraud detection, recommendation engines | **Neo4j**, **Cosmos** (Gremlin API) |
 
@@ -50,7 +50,7 @@
 
 ## 1.1 Given a Scenario, Develop, Modify, and Run SQL Code
 
-This is a scenario-based objective — expect questions that present a situation and ask you to choose the correct SQL statement, identify an error, or pick the right approach.
+This is a scenario-based objective - expect questions that present a situation and ask you to choose the correct SQL statement, identify an error, or pick the right approach.
 
 ### SQL Sublanguages
 
@@ -58,7 +58,31 @@ This is a scenario-based objective — expect questions that present a situation
 |-------------|---------|----------------|
 | **DDL** (Data Definition Language) | Define/modify schema objects | `CREATE`, `ALTER`, `DROP`, `TRUNCATE` |
 | **DML** (Data Manipulation Language) | Manipulate data within tables | `SELECT`, `INSERT`, `UPDATE`, `DELETE` |
+| **DCL** (Data Control Language) | Control access and permissions (see 4.3) | `GRANT`, `REVOKE` |
 | **TCL** (Transaction Control Language) | Control transactions | `BEGIN TRANSACTION`, `COMMIT`, `ROLLBACK`, `SAVEPOINT` |
+
+**Syntax quick-reference (scenario recognition):**
+
+```sql
+-- DDL
+CREATE TABLE employees (id INT PRIMARY KEY, name VARCHAR(100) NOT NULL);
+ALTER TABLE employees ADD COLUMN dept_id INT;
+DROP TABLE employees;
+TRUNCATE TABLE employees;          -- removes all rows, keeps structure, minimal logging
+
+-- DML
+INSERT INTO employees (id, name) VALUES (1, 'Lee');
+UPDATE employees SET name = 'Kim' WHERE id = 1;
+DELETE FROM employees WHERE id = 1; -- logged, can use WHERE (unlike TRUNCATE)
+SELECT name FROM employees WHERE dept_id = 3;
+
+-- TCL
+BEGIN TRANSACTION;
+  UPDATE accounts SET balance = balance - 100 WHERE id = 1;
+  UPDATE accounts SET balance = balance + 100 WHERE id = 2;
+COMMIT;                             -- or ROLLBACK to undo
+SAVEPOINT before_delete;            -- named rollback point within a transaction
+```
 
 **Decision steps for scenario questions:**
 
@@ -70,10 +94,10 @@ This is a scenario-based objective — expect questions that present a situation
 
 SQL operates on **sets of rows**, not row-by-row iteration. Key concepts:
 
-- **UNION / UNION ALL** — combine result sets (UNION removes duplicates; UNION ALL keeps them)
-- **INTERSECT** — rows common to both queries
-- **EXCEPT** — rows in the first query but not the second
-- **JOINs** — combine columns from related tables (INNER, LEFT, RIGHT, FULL OUTER, CROSS)
+- **UNION / UNION ALL** - combine result sets (UNION removes duplicates; UNION ALL keeps them)
+- **INTERSECT** - rows common to both queries
+- **EXCEPT** - rows in the first query but not the second
+- **JOINs** - combine columns from related tables (INNER, LEFT, RIGHT, FULL OUTER, CROSS)
 
 **Exam tip:** If a question contrasts a cursor-based loop with a single `UPDATE … SET … WHERE`, the set-based approach is almost always the correct answer for performance.
 
@@ -91,7 +115,7 @@ SQL operates on **sets of rows**, not row-by-row iteration. Key concepts:
 CompTIA tests vendor-neutral, **ANSI-standard SQL**. Key points:
 
 - Standard syntax for `SELECT`, `INSERT`, `UPDATE`, `DELETE`, JOINs, subqueries
-- Vendor extensions (T-SQL, PL/SQL) may appear in distractors — favor ANSI-compliant answers unless the scenario specifies a vendor
+- Vendor extensions (T-SQL, PL/SQL) may appear in distractors - favor ANSI-compliant answers unless the scenario specifies a vendor
 
 ### Programming with SQL
 
@@ -144,7 +168,7 @@ CompTIA tests vendor-neutral, **ANSI-standard SQL**. Key points:
 | **Linux** | Bash, `cron`, `mysql`, `psql`, `mongosh` | `crontab -e` to schedule a nightly `pg_dump`; pipe output with `|`, redirect with `>` |
 | **Windows** | CMD, PowerShell, `sqlcmd`, Task Scheduler | `sqlcmd -S server -d db -Q "SELECT …"`; PowerShell `Invoke-Sqlcmd` for scripted admin |
 
-**What they might ask:** "A DBA needs to automate a weekly backup on a Linux server — which tool schedules the job?" → `cron`. On Windows? → Task Scheduler (or SQL Server Agent).
+**What they might ask:** "A DBA needs to automate a weekly backup on a Linux server - which tool schedules the job?" → `cron`. On Windows? → Task Scheduler (or SQL Server Agent).
 
 ---
 
@@ -164,18 +188,18 @@ An ORM maps application objects (classes) to database tables, letting developers
 
 ORMs can generate **inefficient SQL** without the developer (or DBA) realizing it:
 
-- **N+1 query problem** — ORM issues one query per related object instead of a single JOIN
-- **Over-fetching** — `SELECT *` when only two columns are needed
-- **Implicit transactions** — ORM may hold transactions open longer than expected, increasing lock contention
+- **N+1 query problem** - ORM issues one query per related object instead of a single JOIN
+- **Over-fetching** - `SELECT *` when only two columns are needed
+- **Implicit transactions** - ORM may hold transactions open longer than expected, increasing lock contention
 
 ### Process to Gauge Impact (Exam-Critical Sequence)
 
-1. **Review SQL code generated by the ORM** — enable query logging or profiling to capture the actual SQL hitting the server.
-2. **Confirm validity of code** — verify correct syntax, proper use of indexes, no Cartesian products or missing `WHERE` clauses.
-3. **Determine impact to the database server** — assess execution plans, CPU/memory usage, lock waits, and I/O.
-4. **Provide solutions / alternate approach, as needed** — suggest query hints, eager loading, stored procedures, or raw SQL for hot paths.
+1. **Review SQL code generated by the ORM** - enable query logging or profiling to capture the actual SQL hitting the server.
+2. **Confirm validity of code** - verify correct syntax, proper use of indexes, no Cartesian products or missing `WHERE` clauses.
+3. **Determine impact to the database server** - assess execution plans, CPU/memory usage, lock waits, and I/O.
+4. **Provide solutions / alternate approach, as needed** - suggest query hints, eager loading, stored procedures, or raw SQL for hot paths.
 
-**Exam tip:** If the question states "application performance degrades after an ORM update," the first step is always to review the generated SQL — not to add hardware or change the schema.
+**Exam tip:** If the question states "application performance degrades after an ORM update," the first step is always to review the generated SQL - not to add hardware or change the schema.
 
 ---
 
@@ -195,8 +219,8 @@ ORMs can generate **inefficient SQL** without the developer (or DBA) realizing i
 |--------|---------|
 | **Inventory of needed assets** | Servers, storage, networking gear, licenses; perform a **gap analysis** to identify what's missing vs. available |
 | **Cloud-based vs. on-premises** | Cloud: elastic scaling, managed services, OpEx model. On-prem: full control, CapEx model, compliance constraints |
-| **Cloud-hosted environment types** | **PaaS** — managed DB service (e.g., Azure SQL Database, RDS) — provider handles OS/patching. **SaaS** — fully hosted application with embedded DB — no admin access. **IaaS** — you get a VM, you install and manage the DBMS yourself |
-| **Database schema** | **Logical** — tables, relationships, constraints independent of platform. **Physical** — files, tablespaces, partitions, storage engine specifics. **View** — virtual schema presented to users/applications |
+| **Cloud-hosted environment types** | **PaaS** - managed DB service (e.g., Azure SQL Database, RDS) - provider handles OS/patching. **SaaS** - fully hosted application with embedded DB - no admin access. **IaaS** - you get a VM, you install and manage the DBMS yourself |
+| **Database schema** | **Logical** - tables, relationships, constraints independent of platform. **Physical** - files, tablespaces, partitions, storage engine specifics. **View** - virtual schema presented to users/applications |
 | **Data sources** | Internal systems, third-party feeds, APIs, flat files |
 | **System specifications** | CPU, RAM, network bandwidth, OS requirements |
 
@@ -206,7 +230,7 @@ ORMs can generate **inefficient SQL** without the developer (or DBA) realizing i
 |----------|---------|
 | **Data dictionary** | Catalog of every table, column, data type, constraint, and description; the "single source of truth" for schema |
 | **Entity relationships (ERDs)** | Visual diagram of entities and how they relate (1:1, 1:M, M:M) |
-| **Data cardinality** | Defines the numerical relationship between entities — one-to-one, one-to-many, many-to-many |
+| **Data cardinality** | Defines the numerical relationship between entities - one-to-one, one-to-many, many-to-many |
 | **System requirements documentation** | Hardware, software, network, and security prerequisites for deployment |
 
-**What they might ask:** "During planning, the team discovers the current server lacks sufficient IOPS for the projected workload — what should the DBA do first?" → Perform a gap analysis and recommend appropriate storage (SSD, SAN) or a cloud PaaS solution.
+**What they might ask:** "During planning, the team discovers the current server lacks sufficient IOPS for the projected workload - what should the DBA do first?" → Perform a gap analysis and recommend appropriate storage (SSD, SAN) or a cloud PaaS solution.

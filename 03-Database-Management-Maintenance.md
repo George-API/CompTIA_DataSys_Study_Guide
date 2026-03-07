@@ -1,6 +1,6 @@
-# 3.0 Database Management and Maintenance — 25%
+# 3.0 Database Management and Maintenance - 25%
 
-This is the highest-weighted domain. Expect the most questions here — invest extra study time in monitoring, optimization, change management, and documentation.
+This is the highest-weighted domain. Expect the most questions here - invest extra study time in monitoring, optimization, change management, and documentation.
 
 ---
 
@@ -15,23 +15,23 @@ Proactive alerting prevents outages. Know what to monitor and what each metric s
 | **Growth in size / storage limits** | Database file size, tablespace usage, log file growth | Running out of disk causes writes to fail and can corrupt data |
 | **Daily usage** | Query volume, active sessions, data changes per period | Establishes normal patterns; deviations signal problems |
 | **Throughput** | Transactions per second (TPS), queries per second (QPS) | Declining throughput under constant load indicates a bottleneck |
-| **Resource utilization — CPU** | Sustained high CPU on the DB host | May indicate missing indexes, bad query plans, or insufficient hardware |
-| **Resource utilization — Memory** | Buffer pool hit ratio, page life expectancy | Low hit ratio means data is read from disk instead of cache |
-| **Resource utilization — Disk space** | Free space, I/O latency, queue depth | High latency or full disks directly affect every query |
-| **Resource utilization — OS performance** | Context switches, page faults, network throughput | OS-level issues cascade into DB performance |
+| **Resource utilization - CPU** | Sustained high CPU on the DB host | May indicate missing indexes, bad query plans, or insufficient hardware |
+| **Resource utilization - Memory** | Buffer pool hit ratio, page life expectancy | Low hit ratio means data is read from disk instead of cache |
+| **Resource utilization - Disk space** | Free space, I/O latency, queue depth | High latency or full disks directly affect every query |
+| **Resource utilization - OS performance** | Context switches, page faults, network throughput | OS-level issues cascade into DB performance |
 
 ### Baseline Configuration and Trending
 
-- **Baseline** — a snapshot of "normal" performance metrics taken during a representative workload period.
-- **Trending** — compare current metrics against the baseline over time to spot gradual degradation or growth.
+- **Baseline** - a snapshot of "normal" performance metrics taken during a representative workload period.
+- **Trending** - compare current metrics against the baseline over time to spot gradual degradation or growth.
 - Without a baseline, you can't distinguish a genuine anomaly from normal variation.
 
-**Exam tip:** "The DBA notices CPU usage at 80% — is this a problem?" Depends on the baseline. If the baseline is 40%, yes. If it's 78%, it's within normal range.
+**Exam tip:** "The DBA notices CPU usage at 80% - is this a problem?" Depends on the baseline. If the baseline is 40%, yes. If it's 78%, it's within normal range.
 
 ### Monitoring Job Completion and Failure
 
 - Scheduled jobs (backups, index rebuilds, ETL) should send success/failure notifications.
-- Failed jobs must be investigated immediately — a silently failing backup is a disaster waiting to happen.
+- Failed jobs must be investigated immediately - a silently failing backup is a disaster waiting to happen.
 
 ### Replication Monitoring
 
@@ -43,7 +43,7 @@ Proactive alerting prevents outages. Know what to monitor and what each metric s
 
 - Confirm every scheduled backup completed successfully.
 - Alert if a backup is missed, fails, or takes abnormally long.
-- Validate backup file size — a dramatically smaller backup may indicate corruption or missing data.
+- Validate backup file size - a dramatically smaller backup may indicate corruption or missing data.
 
 ### Transaction Log Files
 
@@ -70,7 +70,7 @@ Proactive alerting prevents outages. Know what to monitor and what each metric s
 | **Concurrent connections** | Current active sessions; approaching the configured max means new connections will be refused |
 | **Failed/attempted connections** | Authentication failures, exhausted connection pools, or possible brute-force attacks |
 
-**What they might ask:** "The DBA sees a spike in failed connection attempts from a single IP — what should they investigate?" → Possible brute-force attack; also check if an application has stale credentials.
+**What they might ask:** "The DBA sees a spike in failed connection attempts from a single IP - what should they investigate?" → Possible brute-force attack; also check if an application has stale credentials.
 
 ---
 
@@ -86,7 +86,7 @@ Proactive alerting prevents outages. Know what to monitor and what each metric s
 
 - **Rebuild** fragmented indexes to restore sequential page order.
 - **Reorganize** lightly fragmented indexes (less resource-intensive than a rebuild).
-- Remove unused indexes — every index adds overhead to `INSERT`, `UPDATE`, and `DELETE`.
+- Remove unused indexes - every index adds overhead to `INSERT`, `UPDATE`, and `DELETE`.
 - Add covering indexes for high-frequency queries to avoid key lookups.
 
 ### Patch Management
@@ -103,12 +103,12 @@ Proactive alerting prevents outages. Know what to monitor and what each metric s
 
 - Run consistency checks regularly (`DBCC CHECKDB` in SQL Server, `CHECK TABLE` in MySQL, `pg_catalog` checks in PostgreSQL).
 - Detect and repair page-level corruption before it propagates.
-- **Table locking techniques** — integrity checks may require exclusive locks; schedule during maintenance windows to minimize user impact.
+- **Table locking techniques** - integrity checks may require exclusive locks; schedule during maintenance windows to minimize user impact.
 
 ### Data Corruption Checks
 
 - Cross-reference checksums and row counts before and after maintenance operations.
-- Validate that backups restore cleanly (a corrupt backup is worse than no backup — you have false confidence).
+- Validate that backups restore cleanly (a corrupt backup is worse than no backup - you have false confidence).
 
 ### Periodic Review of Audit Logs
 
@@ -141,13 +141,13 @@ Proactive alerting prevents outages. Know what to monitor and what each metric s
 
 ## 3.3 Given a Scenario, Produce Documentation and Use Relevant Tools
 
-This is scenario-based — expect questions like "the DBA needs to document the schema for a compliance audit — what should they produce?"
+This is scenario-based - expect questions like "the DBA needs to document the schema for a compliance audit - what should they produce?"
 
 ### Documentation Types
 
 | Document | Content | When You Need It |
 |----------|---------|-----------------|
-| **Data dictionary** | Table names, column names, data types, constraints, descriptions, relationships | Always — the living reference for the schema |
+| **Data dictionary** | Table names, column names, data types, constraints, descriptions, relationships | Always - the living reference for the schema |
 | **Entity Relationship Diagram (ERD)** | Visual representation of entities, attributes, and relationships | Design reviews, onboarding new team members, compliance audits |
 | **Maintenance documentation** | Schedules for backups, index rebuilds, patching; runbooks for common tasks | Operational continuity; handoff between DBAs |
 | **SOP documentation** | Step-by-step procedures for recurring tasks | Consistency and compliance |
@@ -162,7 +162,7 @@ This is scenario-based — expect questions like "the DBA needs to document the 
 | **Word processors** (e.g., Word, Google Docs) | Write SOPs, maintenance docs, compliance narratives |
 | **Spreadsheet tools** (e.g., Excel, Google Sheets) | Data dictionaries, capacity-planning models, audit log summaries |
 
-**What they might ask:** "A third-party auditor requests proof that the database meets PCI DSS requirements — which documents should the DBA provide?" → Third-party compliance documentation, data dictionary (showing encryption of cardholder data), and audit log review results.
+**What they might ask:** "A third-party auditor requests proof that the database meets PCI DSS requirements - which documents should the DBA provide?" → Third-party compliance documentation, data dictionary (showing encryption of cardholder data), and audit log review results.
 
 ---
 
@@ -178,15 +178,15 @@ Scenario-based: you'll be given a situation and asked what action to take.
 | **Define data** | `CREATE` or `ALTER` schema objects | Use DDL; follow change management; update the data dictionary |
 | **Append columns** | `ALTER TABLE … ADD COLUMN` | Consider NULLability, defaults, and impact on existing queries and application code |
 | **Create new data sets** | Build new tables or materialized result sets | Confirm requirements; design with proper keys and constraints |
-| **Views / materialized views** | **View** — virtual, always current. **Materialized view** — physically stored snapshot, must be refreshed | Use views for real-time access; materialized views for expensive aggregations queried frequently |
+| **Views / materialized views** | **View** - virtual, always current. **Materialized view** - physically stored snapshot, must be refreshed | Use views for real-time access; materialized views for expensive aggregations queried frequently |
 | **Index creation** | `CREATE INDEX` on columns used in `WHERE`, `JOIN`, `ORDER BY` | Balance read speed vs. write overhead; don't over-index |
 | **Create data tables** | `CREATE TABLE` with appropriate columns, types, constraints | Primary key, NOT NULL, CHECK constraints; foreign keys for relationships |
 | **Create data relationships** | Define foreign keys between tables | Enforce referential integrity; consider cascade vs. restrict on DELETE/UPDATE |
 
 ### Data Redundancy
 
-- **Intentional redundancy** — denormalization for read performance (e.g., storing a calculated total in a summary table).
-- **Unintentional redundancy** — duplicate data without a clear purpose; leads to update anomalies.
+- **Intentional redundancy** - denormalization for read performance (e.g., storing a calculated total in a summary table).
+- **Unintentional redundancy** - duplicate data without a clear purpose; leads to update anomalies.
 - Know the trade-off: redundancy improves read speed but increases storage and risk of inconsistency.
 
 ### Data Sharing
@@ -195,4 +195,4 @@ Scenario-based: you'll be given a situation and asked what action to take.
 - Security considerations: who has access, what level (read-only vs. read-write), and how credentials are managed.
 - Data governance: shared data must have clear ownership and a single source of truth.
 
-**Exam tip:** "A developer asks the DBA to create a view that joins five tables for a dashboard — but the dashboard is slow. What should the DBA consider?" → A **materialized view** with a refresh schedule, or query/index optimization on the underlying tables.
+**Exam tip:** "A developer asks the DBA to create a view that joins five tables for a dashboard - but the dashboard is slow. What should the DBA consider?" → A **materialized view** with a refresh schedule, or query/index optimization on the underlying tables.
