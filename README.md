@@ -1,5 +1,7 @@
 # CompTIA DataSys+ DS0-001 Study Guide
 
+![DataSys+ DS0-001 Exam Essentials](DataSys+_DSO-001_Infographic.png)
+
 Exam-focused study guide mapped directly to the official CompTIA DataSys+ objectives and outline.
 
 ## Exam at a Glance
