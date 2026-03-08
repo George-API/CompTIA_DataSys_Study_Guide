@@ -257,42 +257,42 @@ flowchart TD
 
 ## Domain 2 — Database Deployment (16%)
 
-### Cloud Hosting Models
+### Cloud Hosting Models — Who Manages What?
 
 ```mermaid
-block-beta
-    columns 4
-    block:header:4
-        H["Cloud Hosting Models — Who Manages What?"]
+flowchart TD
+    subgraph IAAS["IaaS — Infrastructure as a Service"]
+        direction TB
+        I_YOU["YOU manage:\nApplication\nData / Schema\nDBMS\nOS / Patching"]
+        I_PROV["PROVIDER manages:\nHardware"]
     end
-    space L1["IaaS"] L2["PaaS"] L3["SaaS"]
-    A["Application"] A1["You"] A2["You"] A3["Provider"]
-    B["Data / Schema"] B1["You"] B2["You"] B3["Provider"]
-    C["DBMS"] C1["You"] C2["Provider"] C3["Provider"]
-    D["OS / Patching"] D1["You"] D2["Provider"] D3["Provider"]
-    E["Hardware"] E1["Provider"] E2["Provider"] E3["Provider"]
 
-    style A1 fill:#e74c3c,color:#fff
-    style B1 fill:#e74c3c,color:#fff
-    style C1 fill:#e74c3c,color:#fff
-    style D1 fill:#e74c3c,color:#fff
-    style E1 fill:#2ecc71,color:#fff
+    subgraph PAAS["PaaS — Platform as a Service"]
+        direction TB
+        P_YOU["YOU manage:\nApplication\nData / Schema"]
+        P_PROV["PROVIDER manages:\nDBMS\nOS / Patching\nHardware"]
+    end
 
-    style A2 fill:#e74c3c,color:#fff
-    style B2 fill:#e74c3c,color:#fff
-    style C2 fill:#2ecc71,color:#fff
-    style D2 fill:#2ecc71,color:#fff
-    style E2 fill:#2ecc71,color:#fff
+    subgraph SAAS["SaaS — Software as a Service"]
+        direction TB
+        S_YOU["YOU manage:\nNothing (user only)"]
+        S_PROV["PROVIDER manages:\nApplication\nData / Schema\nDBMS\nOS / Patching\nHardware"]
+    end
 
-    style A3 fill:#2ecc71,color:#fff
-    style B3 fill:#2ecc71,color:#fff
-    style C3 fill:#2ecc71,color:#fff
-    style D3 fill:#2ecc71,color:#fff
-    style E3 fill:#2ecc71,color:#fff
+    MORE["More control\nMore responsibility"] -.-> IAAS
+    LESS["Less control\nLess overhead"] -.-> SAAS
 
-    style L1 fill:#3498db,color:#fff
-    style L2 fill:#9b59b6,color:#fff
-    style L3 fill:#f39c12,color:#fff
+    style IAAS fill:#3498db,color:#fff
+    style PAAS fill:#9b59b6,color:#fff
+    style SAAS fill:#f39c12,color:#fff
+    style I_YOU fill:#e74c3c,color:#fff
+    style I_PROV fill:#2ecc71,color:#fff
+    style P_YOU fill:#e74c3c,color:#fff
+    style P_PROV fill:#2ecc71,color:#fff
+    style S_YOU fill:#e74c3c,color:#fff
+    style S_PROV fill:#2ecc71,color:#fff
+    style MORE fill:#2c3e50,color:#fff
+    style LESS fill:#2c3e50,color:#fff
 ```
 
 ### Deployment Phases — Ordered Process
