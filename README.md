@@ -24,6 +24,7 @@ Exam-focused study guide mapped directly to the official CompTIA DataSys+ object
 | 4 | `04-Data-Database-Security.md` | Domain 4 - 23% |
 | 5 | `05-Business-Continuity.md` | Domain 5 - 12% |
 | 6 | `06-Cross-Domain-Review.md` | Consolidate connections, distinctions, sequences |
+| 7 | `07-Visual-Study-Diagrams.md` | Visual reference diagrams for all domains (Mermaid) |
 
 ## Content Format
 
