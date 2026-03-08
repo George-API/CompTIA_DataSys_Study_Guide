@@ -1,0 +1,18 @@
+{
+    "sourceFile": "README.md",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1772982644247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1772982644247,
+            "name": "Commit-0",
+            "content": "# CompTIA DataSys+ DS0-001 Study Guide\r\n\r\n![DataSys+ DS0-001 Exam Essentials](DataSys+_DSO-001_Infographic.png)\r\n\r\nExam-focused study guide mapped directly to the official CompTIA DataSys+ objectives and outline.\r\n\r\n## Exam at a Glance\r\n\r\n| | |\r\n|-|-|\r\n| Exam | DS0-001 |\r\n| Questions | Up to 90 (MCQ + performance-based) |\r\n| Time | 90 minutes |\r\n| Passing | 700 / 900 |\r\n| Experience | 2-3 years DBA |\r\n\r\n## Study Order\r\n\r\n| # | File | Purpose |\r\n|---|------|---------|\r\n| 1 | `01-Database-Fundamentals.md` | Domain 1 - 24% |\r\n| 2 | `02-Database-Deployment.md` | Domain 2 - 16% |\r\n| 3 | `03-Database-Management-Maintenance.md` | Domain 3 - 25% |\r\n| 4 | `04-Data-Database-Security.md` | Domain 4 - 23% |\r\n| 5 | `05-Business-Continuity.md` | Domain 5 - 12% |\r\n| 6 | `06-Cross-Domain-Review.md` | Consolidate connections, distinctions, sequences |\r\n| 7 | `07-Visual-Study-Diagrams.md` | Visual reference diagrams for all domains (Mermaid) |\r\n\r\n## Content Format\r\n\r\nEach domain file follows the objective verb:\r\n\r\n- **Compare and contrast** - tables, trade-offs, when to use which\r\n- **Given a scenario** - decision steps, what to check first\r\n- **Explain** - definitions, cause/effect, why it matters\r\n- **Describe** - attack types, procedures, common pitfalls\r\n\r\nExam tips inline where question patterns are predictable.\r\n\r\n## Source Material\r\n\r\nAll in `source/`:\r\n\r\n- `Exam-Objectives.md` - official DS0-001 objectives (v5.0)\r\n- `Exam-Outline.md` - high-level domain outline\r\n- `Objectives-Outline-Map.md` - objectives-to-outline cross-reference by domain\r\n- `Study-Guide-Prompt.md` - prompt used to generate the guide\r\n- `Cross-Domain-Question-Bank.md` - question bank design spec\r\n"
+        }
+    ]
+}
