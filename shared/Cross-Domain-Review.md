@@ -8,27 +8,26 @@ Use this after reading domains 01-05 and before taking the practice questions. I
 
 Concepts that appear in more than one domain. The exam can ask about any of these from multiple angles.
 
-| Concept | Where It Appears | How the Angle Shifts |
-|---------|-----------------|---------------------|
-| **ERDs** | 1.4 / 2.1 design docs, 3.3 documentation tools | Design: validate logical schema. Deployment: confirm before build. Maintenance: keep current for audits |
-| **Data dictionary** | 1.4 / 2.1 design docs, 3.3 documentation, 3.4 data management | Design: define schema. Deployment: reference during build. Maintenance: update when schema changes |
-| **Schema (logical / physical / view)** | 1.4 planning, 2.1 deployment design, 2.2 testing validation | Planning: compare levels. Deployment: build physical from logical. Testing: validate schema meets requirements |
-| **Indexes** | 1.1 SQL (CREATE INDEX), 2.2 validation (index analysis), 3.2 maintenance (optimization), 3.4 data management (creation) | Fundamentals: SQL syntax. Deployment: validate coverage. Maintenance: rebuild/reorganize. Data management: create new ones |
-| **Views / materialized views** | 1.1 programming with SQL, 3.4 data management | Fundamentals: what they are. Maintenance: when to use which (real-time vs. expensive aggregation) |
-| **Stored procedures** | 1.1 SQL programming, 2.2 stress testing, 3.2 query optimization | Fundamentals: encapsulate logic. Deployment: stress test them. Maintenance: optimize execution |
-| **Triggers** | 1.1 SQL programming, 2.2 testing (notification triggers) | Fundamentals: automatic event response. Deployment: verify they fire correctly |
-| **Encryption** | 4.1 data security (in transit / at rest), 5.2 backup storage | Security: protect live data. Continuity: encrypt backups and retain keys for the same duration |
-| **Audit logs** | 3.1 monitoring (system logs), 3.2 maintenance (periodic review), 4.1 security audit, 4.2 compliance | Monitoring: collect them. Maintenance: review periodically. Security: check for anomalies. Compliance: retain per regulation |
-| **Backup** | 3.1 monitoring (backup alerts), 3.2 maintenance (corruption checks), 5.1 DR techniques, 5.2 backup/restore | Monitoring: alert on failure. Maintenance: validate integrity. DR: drives RPO. Backup: types, scheduling, testing |
-| **Replication** | 3.1 monitoring (replication lag), 5.1 DR techniques | Monitoring: track lag and errors. DR: synchronous vs. asynchronous trade-offs |
-| **Load balancing** | 3.2 performance tuning, 5.1 HA / DR | Maintenance: distribute read traffic. DR: part of high-availability architecture |
-| **Firewall / perimeter network** | 2.2 connectivity, 4.4 infrastructure security | Deployment: open correct ports between tiers. Security: DB never in the DMZ |
-| **Change management** | 2.2 deployment (modifying), 3.2 maintenance | Deployment: approval before modifying config. Maintenance: full lifecycle (plan through document) |
-| **Service accounts** | 2.2 deployment (credentials), 4.3 authentication | Deployment: provision before install. Security: least privilege, rotate passwords, secrets manager |
-| **Compliance documentation** | 3.3 documentation (SOP, org/third-party), 4.2 governance (GDPR, PCI DSS) | Maintenance: produce and maintain docs. Security: meet regulatory requirements |
-| **Data masking** | 3.2 maintenance (database refresh), 4.1 data security | Maintenance: mask sensitive data before refreshing lower environments. Security: static vs. dynamic masking |
-| **Retention** | 4.2 governance (data retention policies), 5.2 backup (purge vs. archive) | Governance: define how long to keep data. Backup: implement purge or archive cycles |
-
+| Concept | How the Angle Shifts |
+|--------|----------------------|
+| **ERDs** | Design: validate logical schema. Deployment: confirm before build. Maintenance: keep current for audits |
+| **Data dictionary** | Design: define schema. Deployment: reference during build. Maintenance: update when schema changes |
+| **Schema (logical / physical / view)** | Planning: compare levels. Deployment: build physical from logical. Testing: validate schema meets requirements |
+| **Indexes** | Fundamentals: SQL syntax. Deployment: validate coverage. Maintenance: rebuild/reorganize. Data management: create new ones |
+| **Views / materialized views** | Fundamentals: what they are. Maintenance: when to use which (real-time vs. expensive aggregation) |
+| **Stored procedures** | Fundamentals: encapsulate logic. Deployment: stress test them. Maintenance: optimize execution |
+| **Triggers** | Fundamentals: automatic event response. Deployment: verify they fire correctly |
+| **Encryption** | Security: protect live data. Continuity: encrypt backups and retain keys for the same duration |
+| **Audit logs** | Monitoring: collect them. Maintenance: review periodically. Security: check for anomalies. Compliance: retain per regulation |
+| **Backup** | Monitoring: alert on failure. Maintenance: validate integrity. DR: drives RPO. Backup: types, scheduling, testing |
+| **Replication** | Monitoring: track lag and errors. DR: synchronous vs. asynchronous trade-offs |
+| **Load balancing** | Maintenance: distribute read traffic. DR: part of high-availability architecture |
+| **Firewall / perimeter network** | Deployment: open correct ports between tiers. Security: DB never in the DMZ |
+| **Change management** | Deployment: approval before modifying config. Maintenance: full lifecycle (plan through document) |
+| **Service accounts** | Deployment: provision before install. Security: least privilege, rotate passwords, secrets manager |
+| **Compliance documentation** | Maintenance: produce and maintain docs. Security: meet regulatory requirements |
+| **Data masking** | Maintenance: mask sensitive data before refreshing lower environments. Security: static vs. dynamic masking |
+| **Retention** | Governance: define how long to keep data. Backup: implement purge or archive cycles |
 ---
 
 ## Key Distinctions
@@ -190,3 +189,4 @@ Domain 5  ██████████████                   12%
 ```
 
 **Study order:** 01 → 02 → 03 → 04 → 05 → this file → 00-Practice-Questions
+
